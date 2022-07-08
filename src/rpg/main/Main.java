@@ -1,5 +1,9 @@
 package src.rpg.main;
 
+/* Where everything is executed
+ * Probably should create a player and enemy class first
+ */
+
 public class Main {
     public Main() {
 
