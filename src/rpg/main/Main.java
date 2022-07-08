@@ -5,8 +5,8 @@ public class Main {
 
     }
 
-    public static void main(String args[]) {
-        
+    public static void main(String args[]) { //little bitch boy static void main here lmaaaoooo
+        new Main();
     }
     
 }
