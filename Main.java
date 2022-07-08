@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Main {
     public Main() {
         System.out.println("Hello World");
+        System.out.println("cum");
         ArrayList<Pair> keys = new ArrayList<Pair>();
         keys.add(new Pair(7, "Fizz"));
         keys.add(new Pair(11, "Buzz"));
