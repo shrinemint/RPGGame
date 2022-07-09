@@ -1,6 +1,7 @@
 package src.rpg.entity;
 
-import src.rpg.attributes.StatList;
+import src.rpg.entity.attributes.Leveller;
+import src.rpg.entity.attributes.StatList;
 
 /* Basic preset for all entities in the game such as the player and enemies.
  * On second thought, it's only used for those classes...
@@ -12,9 +13,13 @@ import src.rpg.attributes.StatList;
 public class Entity {
     
     private String name;
+    private Leveller leveller;
+    private StatList stats;
 
-    public Entity(String name, StatList stats) {
+    public Entity(String name, Leveller leveller, StatList stats) {
         this.name = name;
+        this.leveller = leveller;
+        this.stats = stats;
     }
 
     public String setName(String name) { //i like adding a return statement even tho this is a set method and you can't make me stop
@@ -24,5 +29,23 @@ public class Entity {
 
     public String getName() {
         return name;
+    }
+
+    public Leveller setLeveller(Leveller leveller) {
+        this.leveller = leveller;
+        return leveller;
+    }
+
+    public Leveller getLeveller() {
+        return leveller;
+    }
+
+    public StatList setStats(StatList stats) {
+        this.stats = stats;
+        return stats;
+    }
+
+    public StatList getStats() {
+        return stats;
     }
 }

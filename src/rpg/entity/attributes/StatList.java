@@ -1,4 +1,4 @@
-package src.rpg.attributes;
+package src.rpg.entity.attributes;
 
 /* This class is used to handle an entity's stats.
  * tbh im making this a class because i googled it and some other dudes said to in a forum so im trusting those dudes

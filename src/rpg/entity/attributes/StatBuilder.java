@@ -1,4 +1,4 @@
-package src.rpg.attributes;
+package src.rpg.entity.attributes;
 
 /* The point of builder classes is to help with classes with constructors that have a lot of parameters.
  * You set the variables here and the build() method should compile then return a StatList class
