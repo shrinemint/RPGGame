@@ -12,12 +12,12 @@ public class StatList {
     private int defense, tempDef; //Outside of battle, temp variables should be zero
     private int speed, tempSpd;
 
-    public StatList(int maxHP, int hp, int attack, int defense, int speed) {
+    public StatList(int maxHP, int attack, int defense, int speed) {
         this.maxHP = maxHP;
-        this.hp = hp;
         this.attack = attack;
         this.defense = defense;
         this.speed = speed;
+        hp = maxHP;
         tempAtk = 0;
         tempDef = 0;
         tempSpd = 0;

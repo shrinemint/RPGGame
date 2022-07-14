@@ -4,39 +4,33 @@ package src.rpg.entity.attributes;
  * You set the variables here and the build() method should compile then return a StatList class
  */
 
-public class StatBuilder {
+public class StatsBuilder {
     private int maxHP;
-    private int hp;
     private int attack;
     private int defense;
     private int speed;
 
-    public StatBuilder setMaxHP(int maxHP) {
+    public StatsBuilder setMaxHP(int maxHP) {
         this.maxHP = maxHP;
         return this;
     }
-    
-    public StatBuilder setHP(int hp) {
-        this.hp = hp;
-        return this;
-    }
 
-    public StatBuilder setAttack(int attack) {
+    public StatsBuilder setAttack(int attack) {
         this.attack = attack;
         return this;
     }
 
-    public StatBuilder setDefense(int defense) {
+    public StatsBuilder setDefense(int defense) {
         this.defense = defense;
         return this;
     }
 
-    public StatBuilder setSpeed(int speed) {
+    public StatsBuilder setSpeed(int speed) {
         this.speed = speed;
         return this;
     }
 
     public StatList build() {
-        return new StatList(maxHP, hp, attack, defense, speed);
+        return new StatList(maxHP, attack, defense, speed);
     }
 }

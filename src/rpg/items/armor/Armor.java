@@ -1,5 +1,7 @@
 package src.rpg.items.armor;
 
+import src.rpg.items.Item;
+
 /* all armor pieces should be divided into four types:
  * 1. helmets
  * 2. chestplates
@@ -8,46 +10,24 @@ package src.rpg.items.armor;
  * otherwise known as the minecraft armor slots
  */
 
-public class Armor {
-    private String name;
-    private String description;
+public class Armor extends Item {
     private int defensePoints; //the armor's defense points should be added to the entity's defense points
     private ArmorType type;
 
     public Armor(ArmorList armorPiece) {
-        this.name = armorPiece.getName();
-        this.description = armorPiece.getDescription();
+        super(armorPiece.getName(), armorPiece.getDescription(), 1);
         this.defensePoints = armorPiece.getDefensePoints();
         this.type = armorPiece.getType();
     }
 
     public Armor(String name, String description, int defensePoints, ArmorType type) {
-        this.name = name;
-        this.description = description;
+        super(name, description, 1);
         this.defensePoints = defensePoints;
         this.type = type;
     }
     
-    enum ArmorType {
+    enum ArmorType { //i like this better than assigning each armor piece type an integer id
         HELMET, CHESTPLATE, LEGGINGS, BOOTS
-    }
-
-    public String setName(String name) {
-        this.name = name;
-        return name;
-    }
-    
-    public String getName() {
-        return name;
-    }
-
-    public String setDescription(String description) {
-        this.description = description;
-        return description;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public int setDefense(int defensePoints) {

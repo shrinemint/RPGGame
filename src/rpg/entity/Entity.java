@@ -6,7 +6,8 @@ import src.rpg.items.armor.ArmorSet;
 import src.rpg.items.weapons.Weapon;
 import src.rpg.items.Inventory;
 
-/* Basic preset for all entities in the game such as the player and enemies.
+/**
+ * Basic preset for all entities in the game such as the player and enemies.
  * On second thought, it's only used for those classes...
  * oh well
  * For the most part, you're probably only gonna be editing the parent class.
@@ -22,10 +23,13 @@ public class Entity {
     private Weapon weaponSlot;
     private Inventory inv;
 
-    public Entity(String name, Leveller leveller, StatList stats) {
+    public Entity(String name, Leveller leveller, StatList stats, ArmorSet armorSet, Weapon weaponSlot, Inventory inv) {
         this.name = name;
         this.leveller = leveller;
         this.stats = stats;
+        this.armorSet = armorSet;
+        this.weaponSlot = weaponSlot;
+        this.inv = inv;
     }
 
     public String setName(String name) { //i like adding a return statement even tho this is a set method and you can't make me stop
