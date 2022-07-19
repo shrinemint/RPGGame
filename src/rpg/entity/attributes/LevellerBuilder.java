@@ -26,7 +26,5 @@ public class LevellerBuilder {
         return this;
     }
 
-    public Leveller build() {
-        return new Leveller(hpGrowth, atkGrowth, defGrowth, spdGrowth);
-    }
+    public Leveller build() {return new Leveller(hpGrowth, atkGrowth, defGrowth, spdGrowth);}
 }

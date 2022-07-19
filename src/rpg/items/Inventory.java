@@ -1,5 +1,18 @@
 package src.rpg.items;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import src.rpg.entity.Entity;
+import src.rpg.items.Item.ItemType;
+import src.rpg.items.armor.Armor;
+import src.rpg.items.consumable.Consumable;
+import src.rpg.items.misc.Misc;
+import src.rpg.items.misc.MiscList;
+import src.rpg.items.weapons.Weapon;
+import src.rpg.items.weapons.WeaponList;
+import src.rpg.main.GameLogic;
+
 /**
  * A glorified ArrayList but I totally promise to you that this is necessary
  * You see, you can set a maximum size be able to change it.
@@ -8,74 +21,123 @@ package src.rpg.items;
 
 public class Inventory {
     private int maxSize;
-    private Item [] itemList;
+    private List<Item> inv;
 
     public Inventory() {
         this.maxSize = 10;
-        itemList = new Item[maxSize];
+        inv = new ArrayList<Item>();
+        clear();
     }
 
     public Inventory(int maxSize) {
         this.maxSize = maxSize;
-        itemList = new Item[maxSize];
+        inv = new ArrayList<Item>();
+        clear();
     }
 
-    public Item add(Item item) { //Adds an item to the inventory in the first availible slot.
-        if (isFull()) {
-            return null;
+    public void use(int i, Entity e) { //might need to pass index to item so it can handle being equipped or used by itself
+        switch (get(i).getType()) {
+            case WEAPON:
+                boolean slotOpen = e.getWeaponSlot().is(new Weapon(WeaponList.EMPTY));
+                boolean weaponEquipped; //tests if the weapon is successfully equipped or not
+                if (slotOpen) {
+
+                }
+                else {
+
+                }
+
+                if (weaponEquipped) {
+                    remove(i);
+                    System.out.println("You equipped the " + get(i).getName() + ".");
+                }
+
+
+                if () { //if entity has no weapon equipped, equip weapon
+                    get(i).use(e);
+                    
+                }
+                else {
+                    int choice = GameLogic.askSimpleQuestion("Do you want to equip the " + get(i).getName() + "?");
+                    if (choice == 1) {
+                        Weapon temp = e.getWeaponSlot();
+                        get(i).use(e);
+                        System.out.println("You equipped the " + get(i).getName() + ".");
+                        remove(i);
+                        e.getInventory().add(temp);
+                    }
+                    else {
+                        System.out.println("You did not equip the " + get(i).getName());
+                    }
+                }
+                break;
+
+            case ARMOR:
+                break;
+
+            case CONSUMABLE:
+                break;
+
+            case MISC:
+                break;
         }
+    }
+
+    /**
+     * These next few methods below share a name with a method from the ArrayList class but are different as it needs to work for the inventory,
+     * which doesn't function exactly the same
+     */
+    public Item add(Item item) { //Adds an item to the inventory in the first availible slot.
+        //Ensures an item cannot be added to a full inventory on the programmer's end
+        if (isFull()) {throw new IllegalArgumentException("Inventory is full.");}
         else {
-            for (int i = 0; i < itemList.length; i++) {
-                if (itemList[i] == null) {
-                    itemList[i] = item;
+            int i = 0;
+            while (i < maxSize) {
+                if (inv.get(i).is(new Misc(MiscList.EMPTY_SLOT))) {
+                    inv.set(i, item);
                     break;
                 }
+                i++;
             }
             return item;
         }
     }
 
-    public void use(int index) {
-        itemList[index].use();
+    public boolean remove(int i) { //Removing an item without using it
+        inv.set(i, new Misc(MiscList.EMPTY_SLOT));
+        return inv.get(i).is(new Misc(MiscList.EMPTY_SLOT));
     }
-
+    
     public boolean clear() { //Clears the inventory and returns true since it should always be cleared after using this method.
-        for (int i = 0; i < itemList.length; i++) {
-            itemList[i] = null;
+        int i = 0;
+        while (i < maxSize) {
+            inv.add(i, new Misc(MiscList.EMPTY_SLOT));
+            i++;
         }
-        return isEmpty();
+        return !isFull();
     }
 
-    /**
-     * For this to work, the old inventory array must be copied over to a list of the new maxSize value. 
-     * If maxSize is larger, copy all elements from previous array to new array.
-     * If maxSize is smaller, copy all elements with an index smaller than the new array's length.
-     */
+    public Item get(int i) {return inv.get(i);}
+
     public int setMaxSize(int maxSize) {
         this.maxSize = maxSize;
-        Item [] tempItemList = itemList; //A copy of the old inventory
-        itemList = new Item[maxSize]; //New inventory
-        System.arraycopy(tempItemList, 0, itemList, 0, Math.min(tempItemList.length, itemList.length));
         return maxSize;
     }
 
-    public int getMaxSize() {return itemList.length;}
-
-    public int getSize() { //Returns the logical size of the inventory
+    public int getSize() {
         int size = 0;
-        for (int i = 0; i < itemList.length; i++) {
-            if (itemList[i] != null) {
+        int i = 0;
+        
+        while (i < maxSize) {
+            if (!get(i).is(new Misc(MiscList.EMPTY_SLOT))) {
                 size++;
             }
+            i++;
         }
         return size;
     }
+    
+    public int getMaxSize() {return maxSize;}
+    public boolean isFull() {return getSize() == maxSize;} //Returns if logical size is equal to physical size
 
-    public boolean isFull() { //Returns if logical size is equal to physical size
-        return getSize() == itemList.length;
-    }
-
-    public boolean isEmpty() { //Returns if logical size is 0
-        return getSize() == 0;
-    }
 }

@@ -5,6 +5,7 @@ package src.rpg.entity.attributes;
  */
 
 public class Leveller {
+    private static final int maxLevel = 100;
     private int level;
     private int hpGrowth;
     private int atkGrowth;
@@ -17,13 +18,10 @@ public class Leveller {
         this.defGrowth = defGrowth;
         this.spdGrowth = spdGrowth;
     }
-
+    
     public int setLevel(int level) {
-        this.level = level;
-        return level;
-    }
-
-    public int getLevel() {
+        if (level > maxLevel) {this.level = maxLevel;}
+        else {this.level = level;}
         return level;
     }
 
@@ -31,26 +29,14 @@ public class Leveller {
         this.hpGrowth = hpGrowth;
         return hpGrowth;
     }
-
-    public int getHpGrowth() {
-        return hpGrowth;
-    }
-
+    
     public int setAtkGrowth(int atkGrowth) {
         this.atkGrowth = atkGrowth;
         return atkGrowth;
     }
-
-    public int getAtkGrowth() {
-        return atkGrowth;
-    }
-
+    
     public int setDefGrowth(int defGrowth) {
         this.defGrowth = defGrowth;
-        return defGrowth;
-    }
-
-    public int getDefGrowth() {
         return defGrowth;
     }
 
@@ -59,7 +45,10 @@ public class Leveller {
         return spdGrowth;
     }
 
-    public int getSpdGrowth() {
-        return spdGrowth;
-    }
+    public int getLevel() {return level;}
+    public int getMaxLevel() {return maxLevel;}
+    public int getHpGrowth() {return hpGrowth;}
+    public int getAtkGrowth() {return atkGrowth;}
+    public int getDefGrowth() {return defGrowth;}
+    public int getSpdGrowth() {return spdGrowth;}
 }

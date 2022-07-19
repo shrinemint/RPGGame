@@ -27,71 +27,49 @@ public class StatList {
         this.maxHP = maxHP;
         return maxHP;
     }
-
-    public int getMaxHP() {
-        return maxHP;
-    }
-
+    
     public int setHP(int hp) {
-        this.hp = hp;
+        if (hp > maxHP) {this.hp = maxHP;}
+        else {this.hp = hp;}
         return hp;
     }
-
-    public int getHP() {
-        return hp;
-    }
-
+    
     public int setAttack(int attack) {
         this.attack = attack;
         return attack;
     }
-
-    public int getAttack() {
-        return attack;
-    }
-
+    
     public int setTempAtk(int tempAtk) {
         this.tempAtk = tempAtk;
         return tempAtk;
     }
-
-    public int getTempAtk() {
-        return tempAtk;
-    }
-
+    
     public int setDefense(int defense) {
         this.defense = defense;
         return defense;
     }
-
-    public int getDefense() {
-        return defense;
-    }
-
+    
     public int setTempDef(int tempDef) {
         this.tempDef = tempDef;
         return tempDef;
     }
-
-    public int getTempDef() {
-        return tempDef;
-    }
-
+    
     public int setSpeed(int speed) {
         this.speed = speed;
         return speed;
     }
-
-    public int getSpeed() {
-        return speed;
-    }
-
+    
     public int setTempSpd(int tempSpd) {
         this.tempSpd = tempSpd;
         return tempSpd;
     }
 
-    public int getTempSpd() {
-        return tempSpd;
-    }
+    public int getMaxHP() {return maxHP;}
+    public int getHP() {return hp;}
+    public int getAttack() {return attack;}
+    public int getTempAtk() {return tempAtk;}
+    public int getDefense() {return defense;}
+    public int getTempDef() {return tempDef;}
+    public int getSpeed() {return speed;}
+    public int getTempSpd() {return tempSpd;}
 }

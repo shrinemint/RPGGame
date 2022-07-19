@@ -1,7 +1,10 @@
 package src.rpg.items.weapons;
 
 public enum WeaponList {
-    EMPTY("None.", "No weapon equipped.", 0);
+    EMPTY("None", "No weapon equipped.", 0),
+    WOODEN_SWORD("Wooden Sword", "A hand-crafted sword.", 1),
+    GUN("Gun", "A classic RPG weapon.", 100 )
+    ;
 
     private String name;
     private String description;

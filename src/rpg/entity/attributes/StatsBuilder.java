@@ -30,7 +30,5 @@ public class StatsBuilder {
         return this;
     }
 
-    public StatList build() {
-        return new StatList(maxHP, attack, defense, speed);
-    }
+    public StatList build() {return new StatList(maxHP, attack, defense, speed);}
 }

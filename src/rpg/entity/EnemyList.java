@@ -1,10 +1,10 @@
 package src.rpg.entity;
 
+import src.rpg.entity.attributes.ArmorSet;
 import src.rpg.entity.attributes.Leveller;
 import src.rpg.entity.attributes.LevellerBuilder;
 import src.rpg.entity.attributes.StatsBuilder;
 import src.rpg.items.Inventory;
-import src.rpg.items.armor.ArmorSet;
 import src.rpg.items.weapons.Weapon;
 import src.rpg.items.weapons.WeaponList;
 import src.rpg.entity.attributes.StatList;
@@ -55,14 +55,9 @@ public enum EnemyList {
     }
 
     public String getName() {return name;}
-
     public Leveller getLeveller() {return leveller;}
-
     public StatList getStats() {return stats;}
-
     public ArmorSet getArmorSet() {return armorSet;}
-
     public Weapon getWeaponSlot() {return weaponSlot;}
-
     public Inventory getInventory() {return inv;}
 }
