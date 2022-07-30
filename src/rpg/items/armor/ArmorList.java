@@ -7,38 +7,7 @@ import src.rpg.items.armor.Armor.ArmorType;
 public enum ArmorList {
     //It'd probably be nicer if all the "empty slots" were combined and worked for any of the armor types
     //If you figure that out, then perhaps you should do that
-    EMPTY_HELMET("Empty", "No helmet worn.", 
-        new StatsBuilder()
-            .setMaxHP(0)
-            .setAttack(0)
-            .setDefense(0)
-            .setSpeed(0)
-            .build(), 
-        ArmorType.HELMET),
-    EMPTY_CHESTPLATE("Empty", "No chestplate worn.", 
-        new StatsBuilder()
-            .setMaxHP(0)
-            .setAttack(0)
-            .setDefense(0)
-            .setSpeed(0)
-            .build(), 
-        ArmorType.CHESTPLATE),
-    EMPTY_LEGGINGS("Empty", "No leggings worn.", 
-        new StatsBuilder()
-            .setMaxHP(0)
-            .setAttack(0)
-            .setDefense(0)
-            .setSpeed(0)
-            .build(), 
-        ArmorType.LEGGINGS),
-    EMPTY_BOOTS("Empty", "No boots worn.", 
-        new StatsBuilder()
-            .setMaxHP(0)
-            .setAttack(0)
-            .setDefense(0)
-            .setSpeed(0)
-            .build(), 
-        ArmorType.BOOTS),
+    EMPTY_SLOT("EMPTY ARMOR SLOT", "", null, null),
 
     RAGGED_BOOTS("Ragged Boots", "A pair of unkempt leather boots.", 
         new StatsBuilder()
@@ -46,6 +15,24 @@ public enum ArmorList {
             .setAttack(0)
             .setDefense(2)
             .setSpeed(0)
+            .build(),
+        ArmorType.BOOTS),
+
+    HIGH_HEELS("High Heels", "She wears high-heels...", //these stupid little things are the only thing keepin g me going.
+        new StatsBuilder()
+            .setMaxHP(0)
+            .setAttack(10)
+            .setDefense(3)
+            .setSpeed(0)
+            .build(),
+        ArmorType.BOOTS),
+
+    SNEAKERS("Sneakers", "...and I wear sneakers.", 
+        new StatsBuilder()
+            .setMaxHP(0)
+            .setAttack(0)
+            .setDefense(5)
+            .setSpeed(8)
             .build(),
         ArmorType.BOOTS),
     ;

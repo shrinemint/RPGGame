@@ -8,10 +8,10 @@ import src.rpg.items.weapons.Weapon;
 
 public class Enemy extends Entity {
     public Enemy(EnemyList enemy) { //Preferably, you would use this one for the most part.
-        super(enemy.getName(), enemy.getLeveller(), enemy.getStats(), enemy.getArmorSet(), enemy.getWeaponSlot(), enemy.getInventory());
+        super(enemy.getName(), enemy.getLeveller(), enemy.getStats(), enemy.getInventory());
     }
 
     public Enemy(String name, Leveller leveller, StatList stats, ArmorSet armorSet, Weapon weaponSlot, Inventory inv) { //This constructor is only needed if you want a specific and unique enemy not listed in EnemyList.java
-        super(name, leveller, stats, armorSet, weaponSlot, inv);
+        super(name, leveller, stats, inv);
     }
 }

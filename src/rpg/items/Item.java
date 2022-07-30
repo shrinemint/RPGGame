@@ -12,30 +12,46 @@ import src.rpg.entity.Entity;
  * 5. Battle Items? (Items that only have function in battle)
  */
 
-public abstract class Item {
+public abstract class Item implements Cloneable {
     private String name;
     private String description;
     private int quantity; //the current stack number in the inventory
     private int maxStack; //The highest an item can be stacked within the inventory (like minecraft).
     //idk if items should be stackable yet
     private ItemType type;
-    private int id; //The item id is initialized once the method setItemList is ran. probably only useful later on when there is an actual game
 
-    public Item(String name, String description, int maxStack, int id) {
+    public Item(String name, String description, int maxStack, ItemType type) {
         this.name = name;
         this.description = description;
         this.maxStack = maxStack;
-        this.id = id;
+        this.type = type;
     }
     
     public enum ItemType {
         WEAPON, ARMOR, CONSUMABLE, MISC
     }
 
-    public abstract boolean use(Entity e);
+    public abstract void use(Entity e);
     
-    public boolean is(Item i) { //alternative to equals i guess
-        return name == i.getName() && description == i.getDescription() && maxStack == i.getMaxStack();
+    /**
+     * I remade the equals method to compare item IDs generated upon program start-up.
+     * This was probably not needed.
+     * at least items have an id now
+     */
+    public boolean equals(Item i) {return i.getID() == this.getID();}
+
+    public int getID() {
+        int pos = 0;
+        int i = 0;
+        while (i < ItemLibrary.getItemList().size()) {
+            if (ItemLibrary.getItemList().get(i).getName().equals(name) 
+                && ItemLibrary.getItemList().get(i).getDescription().equals(description)
+                && ItemLibrary.getItemList().get(i).getType().equals(type)) {
+                pos = i;
+            }
+            i++;
+        }
+        return pos;
     }
 
     public String setName(String name) {
@@ -49,9 +65,18 @@ public abstract class Item {
     }
 
     public int setQuantity(int quantity) {
-        if (quantity > maxStack) {this.quantity = maxStack;}
-        else {this.quantity = quantity;}
+        this.quantity = quantity;
         return quantity;
+    }
+
+    /**
+     * Unlike setQuantity, this is an easier version which adds to the quantity without doing setQuantity(getQuantity() + x);
+     * @param x the quantity to be added
+     * @return
+     */
+    public int addQuantity(int x) {
+        setQuantity(getQuantity() + x);
+        return x;
     }
     
     public int setMaxStack(int maxStack) {
@@ -63,10 +88,10 @@ public abstract class Item {
         this.type = type;
         return type;
     }
-    
-    public int setID(int id) {
-        this.id = id;
-        return id;
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public String getName() {return name;}
@@ -74,5 +99,4 @@ public abstract class Item {
     public int getQuantity() {return quantity;}
     public int getMaxStack() {return maxStack;}
     public ItemType getType() {return type;}
-    public int getID() {return id;}
 }

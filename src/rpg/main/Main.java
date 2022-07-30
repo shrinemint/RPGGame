@@ -1,9 +1,19 @@
 package src.rpg.main;
 
+import java.io.*;
+import java.util.*;
+
+import src.rpg.battle.BattleLogic;
+import src.rpg.entity.Enemy;
+import src.rpg.entity.EnemyList;
 import src.rpg.entity.Entity;
+import src.rpg.entity.Player;
+import src.rpg.items.ItemLibrary;
+import src.rpg.items.weapons.*;
 import src.rpg.items.armor.*;
-import src.rpg.items.weapons.Weapon;
-import src.rpg.items.weapons.WeaponList;
+import src.rpg.items.armor.Armor.ArmorType;
+import src.rpg.items.consumable.*;
+import src.rpg.items.misc.*;
 
 /**
  * Where everything is executed
@@ -13,36 +23,34 @@ import src.rpg.items.weapons.WeaponList;
 public class Main {
     public Main() {
         init();
-        
-        
-        Entity tester = GameLogic.createPlayer();
-        tester.setWeaponSlot(new Weapon(WeaponList.GUN));
-        tester.getInventory().add(new Weapon(WeaponList.WOODEN_SWORD));
-        System.out.println(tester.getInventory().getSize());
-        System.out.println(tester.getInventory().getMaxSize());
 
-        System.out.println("Held Weapon: " + tester.getWeaponSlot().getName());
-        for (int i = 0; i < tester.getInventory().getMaxSize(); i++) { //prints inventory
-            System.out.println((i + 1) + " : " + tester.getInventory().get(i).getName());
-        }
-        
+        Player player = GameLogic.createPlayer();
+        player.getInventory().add(new Consumable(ConsumableList.POTION), 10);
+        player.getInventory().add(new Armor(ArmorList.SNEAKERS), 1);
+        Enemy enemy = new Enemy(EnemyList.SNAKE);
+        Enemy enemy2 = new Enemy(EnemyList.SNAKE);
 
-        //tester.getInventory().remove(0);
-        //System.out.println(tester.getInventory().getSize());
-        tester.getInventory().use(0, tester);
+        ArrayList<Enemy> enemyParty = new ArrayList<Enemy>();
+        enemyParty.add(enemy);
+        enemyParty.add(enemy2);
 
-        System.out.println("Held Weapon: " + tester.getWeaponSlot().getName());
-        for (int i = 0; i < tester.getInventory().getMaxSize(); i++) { //prints inventory
-            System.out.println((i + 1) + " : " + tester.getInventory().get(i).getName());
-        }
+        BattleLogic.startEncounter(player, enemyParty);
     }
 
-    public static void main(String args[]) { //little bitch boy static void main here lmaaaoooo
+    public static void main(String args[]) throws IOException { //little bitch boy static void main here lmaaaoooo
         new Main();
     }
     
     public void init() { //a method activating all the initialization methods
-        GameLogic.initItemList();
+        try {
+            ItemLibrary.initItemList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //ItemLibrary.printItems();
+        
     }
+
+    
 
 }

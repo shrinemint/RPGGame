@@ -7,7 +7,7 @@ import src.rpg.items.Inventory;
 import src.rpg.items.weapons.Weapon;
 
 public class Player extends Entity {
-    public Player(String name, Leveller leveller, StatList stats, ArmorSet armorSet, Weapon weaponSlot, Inventory inv) {
-        super(name, leveller, stats, armorSet, weaponSlot, inv);
+    public Player(String name, Leveller leveller, StatList stats, Inventory inv) {
+        super(name, leveller, stats, inv);
     }
 }

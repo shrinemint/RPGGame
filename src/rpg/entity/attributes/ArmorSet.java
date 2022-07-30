@@ -2,6 +2,7 @@ package src.rpg.entity.attributes;
 
 import src.rpg.items.armor.Armor;
 import src.rpg.items.armor.ArmorList;
+import src.rpg.items.armor.Armor.ArmorType;
 
 /**
  * Handles the armor slots for an entity
@@ -15,10 +16,10 @@ public class ArmorSet {
     private Armor boots;
 
     public ArmorSet() {
-        equip(new Armor(ArmorList.EMPTY_HELMET));
-        equip(new Armor(ArmorList.EMPTY_CHESTPLATE));
-        equip(new Armor(ArmorList.EMPTY_LEGGINGS));
-        equip(new Armor(ArmorList.EMPTY_BOOTS));
+        helmet = new Armor(ArmorList.EMPTY_SLOT);
+        chestplate = new Armor(ArmorList.EMPTY_SLOT);
+        leggings = new Armor(ArmorList.EMPTY_SLOT);
+        boots = new Armor(ArmorList.EMPTY_SLOT);
     }
 
     public ArmorSet(Armor helmet, Armor chestplate, Armor leggings, Armor boots) {
@@ -34,9 +35,13 @@ public class ArmorSet {
         equip(new Armor(leggings));
         equip(new Armor(boots));
     }
-
-    public Armor equip(Armor armorPiece) { //basically every set method here condensed into one method.
-        switch (armorPiece.getType()) {
+    
+    /**
+     * A set method for any armor piece.
+     * This does not work for unequipping, where it needs to "equip" an empty armor slot.
+     */
+    public Armor equip(Armor armorPiece) { 
+        switch (armorPiece.getArmorType()) {
             case HELMET:
                 this.helmet = armorPiece;
                 break;
@@ -51,6 +56,54 @@ public class ArmorSet {
                 break;
         }
         return armorPiece;
+    }
+
+    public Armor unequip(ArmorType type) {
+        Armor unequippedPiece = null;
+        switch (type) {
+            case HELMET:
+                unequippedPiece = this.helmet;
+                this.helmet = new Armor(ArmorList.EMPTY_SLOT);
+                break;
+
+            case CHESTPLATE:
+                unequippedPiece = this.chestplate;
+                this.chestplate = new Armor(ArmorList.EMPTY_SLOT);
+                break;
+
+            case LEGGINGS:
+                unequippedPiece = this.leggings;
+                this.leggings = new Armor(ArmorList.EMPTY_SLOT);
+                break;
+
+            case BOOTS:
+                unequippedPiece = this.boots;
+                this.boots = new Armor(ArmorList.EMPTY_SLOT);
+                break;
+            default:
+                throw new IllegalArgumentException("Unrecognized armor type.");
+        }
+        return unequippedPiece;
+    }
+
+    public Armor setHelmet(Armor helmet) {
+        this.helmet = helmet;
+        return helmet;
+    }
+
+    public Armor setChestplate(Armor chestplate) {
+        this.chestplate = chestplate;
+        return chestplate;
+    }
+
+    public Armor setLeggings(Armor leggings) {
+        this.leggings = leggings;
+        return leggings;
+    }
+
+    public Armor setBoots(Armor boots) {
+        this.boots = boots;
+        return boots;
     }
 
     public Armor getHelmet() {return helmet;}

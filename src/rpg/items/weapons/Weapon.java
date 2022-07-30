@@ -7,23 +7,18 @@ public class Weapon extends Item {
     private double power; //Power is a slight adjustment to an entity's attack
 
     public Weapon(WeaponList weapon) {
-        super(weapon.getName(), weapon.getDescription(), 1, 1);
+        super(weapon.getName(), weapon.getDescription(), 1, ItemType.WEAPON);
         this.power = weapon.getPower();
     }
 
     public Weapon(String name, String description, double power) {
-        super(name, description, 1, 1);
+        super(name, description, 1, ItemType.WEAPON);
         this.power = power;
     }
 
     @Override
-    public boolean use(Entity e) {
-        e.setWeaponSlot(this);
-        return e.getWeaponSlot().is(this);
-    }
-
-    public void equip(int index, Entity e) {
-        
+    public void use(Entity e) {
+        e.getInventory().setWeaponSlot(this);
     }
 
     public double setPower(double power) {

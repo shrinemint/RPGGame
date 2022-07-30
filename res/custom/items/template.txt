@@ -1,0 +1,18 @@
+/**
+ * This is a template file to help create custom items.
+ * The item's name, description, and type are required for all items.
+ * If one property doesn't apply to the item, then delete it. (i.e. a weapon cannot have restoration points)
+ * Reference:
+ * nme = name
+ * des = description
+ * m_stk = maximum stack
+ * typ = item's type (Must be a weapon, armor, consumable, or misc)
+ * pwr = a weapon's power
+ * a = armor's attack stat
+ * d = armor's defense stat
+ * s = armor's speed stat
+ * a_piece = armor piece type (Must be a helmet, chestplate, leggings, or boots)
+ * r-pts = a consumable's restoration points
+ * r-pct = a consumable's restoration percent (Scales off character's maximum health)
+ */
+nme:"",des:"",m_stk:,typ:,pwr:,a:,d:,s:,a_piece:,r_pts:,r_pct:

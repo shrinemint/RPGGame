@@ -5,11 +5,11 @@ import src.rpg.items.Item;
 
 public class Misc extends Item {
     public Misc(MiscList misc) {
-        super(misc.getName(), misc.getDescription(), misc.getMaxStack(), 4);
+        super(misc.getName(), misc.getDescription(), misc.getMaxStack(), ItemType.MISC);
     }
     
     public Misc(String name, String description, int maxStack) {
-        super(name, description, maxStack, 4);
+        super(name, description, maxStack, ItemType.MISC);
     }
 
     @Override

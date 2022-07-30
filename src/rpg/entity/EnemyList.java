@@ -22,42 +22,34 @@ public enum EnemyList {
     //You can only add a constructor after the semicolon.
     SNAKE("Snake", 
         new LevellerBuilder()
-            .setHPGrowth(0)
-            .setAtkGrowth(0)
-            .setDefGrowth(0)
-            .setSpdGrowth(0)
+            .setHPGrowth(2)
+            .setAtkGrowth(4)
+            .setDefGrowth(1)
+            .setSpdGrowth(3)
             .build(),
         new StatsBuilder()
-            .setMaxHP(0)
-            .setAttack(0)
-            .setDefense(0)
-            .setSpeed(0)
+            .setMaxHP(60)
+            .setAttack(25)
+            .setDefense(10)
+            .setSpeed(20)
             .build(),
-        new ArmorSet(),
-        new Weapon(WeaponList.EMPTY),
         new Inventory()),
     ;
     
     private String name;
     private Leveller leveller;
     private StatList stats;
-    private ArmorSet armorSet;
-    private Weapon weaponSlot;
     private Inventory inv;
 
-    private EnemyList(String name, Leveller leveller, StatList stats, ArmorSet armorSet, Weapon weaponSlot, Inventory inv) { //The constructor for any enum can only be private
+    private EnemyList(String name, Leveller leveller, StatList stats, Inventory inv) { //The constructor for any enum can only be private
         this.name = name;
         this.leveller = leveller;
         this.stats = stats;
-        this.armorSet = armorSet;
-        this.weaponSlot = weaponSlot;
         this.inv = inv;
     }
 
     public String getName() {return name;}
     public Leveller getLeveller() {return leveller;}
     public StatList getStats() {return stats;}
-    public ArmorSet getArmorSet() {return armorSet;}
-    public Weapon getWeaponSlot() {return weaponSlot;}
     public Inventory getInventory() {return inv;}
 }

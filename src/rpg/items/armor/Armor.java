@@ -12,13 +12,13 @@ public class Armor extends Item {
     private ArmorType type;
 
     public Armor(ArmorList armorPiece) {
-        super(armorPiece.getName(), armorPiece.getDescription(), 1, 2);
+        super(armorPiece.getName(), armorPiece.getDescription(), 1, ItemType.ARMOR);
         this.stats = armorPiece.getStats();
         this.type = armorPiece.getType();
     }
 
     public Armor(String name, String description, StatList stats, ArmorType type) {
-        super(name, description, 1, 2);
+        super(name, description, 1, ItemType.ARMOR);
         this.stats = stats;
         this.type = type;
     }
@@ -29,11 +29,7 @@ public class Armor extends Item {
 
     @Override
     public void use(Entity e) {
-        e.getArmorSet().equip(this);
-    }
-
-    public void equip(int index, Entity e) {
-
+        e.getInventory().getArmorSet().equip(this);
     }
 
     public StatList setStats(StatList stats) {
@@ -47,5 +43,5 @@ public class Armor extends Item {
     }
 
     public StatList getStats() {return stats;}
-    public ArmorType getType() {return type;}
+    public ArmorType getArmorType() {return type;}
 }

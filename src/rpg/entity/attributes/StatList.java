@@ -23,6 +23,46 @@ public class StatList {
         tempSpd = 0;
     }
 
+    public int addMaxHP(int x) {
+        setMaxHP(getMaxHP() + x);
+        return x;
+    }
+
+    public int addHP(int x) {
+        setHP(getHP() + x);
+        return x;
+    }
+
+    public int addAttack(int x) {
+        setAttack(getAttack() + x);
+        return x;
+    }
+
+    public int addTempAtk(int x) {
+        setTempAtk(getTempAtk() + x);
+        return x;
+    }
+
+    public int addDefense(int x) {
+        setDefense(getDefense() + x);
+        return x;
+    }
+
+    public int addTempDef(int x) {
+        setTempDef(getTempDef() + x);
+        return x;
+    }
+
+    public int addSpeed(int x) {
+        setSpeed(getSpeed() + x);
+        return x;
+    }
+
+    public int addTempSpd(int x) {
+        setTempSpd(getTempSpd() + x);
+        return x;
+    }
+
     public int setMaxHP(int maxHP) {
         this.maxHP = maxHP;
         return maxHP;

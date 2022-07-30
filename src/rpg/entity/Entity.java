@@ -1,12 +1,10 @@
 package src.rpg.entity;
 
-import src.rpg.entity.attributes.ArmorSet;
-import src.rpg.entity.attributes.BattleAction;
+import src.rpg.main.GameLogic;
 import src.rpg.entity.attributes.Leveller;
 import src.rpg.entity.attributes.StatList;
-import src.rpg.items.weapons.Weapon;
-import src.rpg.main.GameLogic;
 import src.rpg.items.Inventory;
+import src.rpg.entity.attributes.BattleAction;
 
 /**
  * Basic preset for all entities in the game such as the player and enemies.
@@ -21,18 +19,13 @@ public class Entity {
     private String name;
     private Leveller leveller;
     private StatList stats;
-    private ArmorSet armorSet;
-    private Weapon weaponSlot;
     private Inventory inv;
-    
     private BattleAction action;
 
-    public Entity(String name, Leveller leveller, StatList stats, ArmorSet armorSet, Weapon weaponSlot, Inventory inv) {
+    public Entity(String name, Leveller leveller, StatList stats, Inventory inv) {
         this.name = name;
         this.leveller = leveller;
         this.stats = stats;
-        this.armorSet = armorSet;
-        this.weaponSlot = weaponSlot;
         this.inv = inv;
     }
 
@@ -98,16 +91,6 @@ public class Entity {
         return stats;
     }
     
-    public ArmorSet setArmorSet(ArmorSet armorSet) {
-        this.armorSet = armorSet;
-        return armorSet;
-    }
-    
-    public Weapon setWeaponSlot(Weapon weaponSlot) {
-        this.weaponSlot = weaponSlot;
-        return weaponSlot;
-    }
-    
     public Inventory setInventory(Inventory inv) {
         this.inv = inv;
         return inv;
@@ -118,11 +101,30 @@ public class Entity {
         return action;
     }
 
+    public void getInfo() {
+        System.out.println("Name: " + getName());
+        System.out.println("Level: " + getLeveller().getLevel());
+        System.out.println("XP: " + getLeveller().getXP() + "/" + getLeveller().getMaxXP());
+        System.out.println("HP: " + getStats().getHP() + "/" + getStats().getMaxHP());
+        System.out.println("Attack: " + getStats().getAttack());
+        System.out.println("Defense: " + getStats().getDefense());
+        System.out.println("Speed: " + getStats().getSpeed());
+        System.out.println("Held Weapon: " + getInventory().getWeaponSlot().getName());
+        System.out.println("Helmet: " + getInventory().getArmorSet().getHelmet().getName());
+        System.out.println("Chestplate: " + getInventory().getArmorSet().getChestplate().getName());
+        System.out.println("Leggings: " + getInventory().getArmorSet().getLeggings().getName());
+        System.out.println("Boots: " + getInventory().getArmorSet().getBoots().getName());
+        System.out.println("Inventory Size: " + getInventory().getMaxSize());
+        int i = 0;
+        while (i < getInventory().getMaxSize()) {
+            System.out.println((i + 1) + " : " + getInventory().get(i).getName() + " x" + getInventory().get(i).getQuantity());
+            i++;
+        }
+    }
+
     public String getName() {return name;}
     public Leveller getLeveller() {return leveller;}
     public StatList getStats() {return stats;}
-    public ArmorSet getArmorSet() {return armorSet;}
-    public Weapon getWeaponSlot() {return weaponSlot;}
     public Inventory getInventory() {return inv;}
     public BattleAction getAction() {return action;}
 }
